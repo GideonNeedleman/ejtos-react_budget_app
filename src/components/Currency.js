@@ -18,7 +18,7 @@ const Currency = () => {
         <option value="£">£ Pound</option>
         <option value="₹">₹ Rupee</option>
         <option value="€">€ Euro</option>
-        <option value="CAD">$ Dollar</option>
+        <option value="$">$ Dollar</option>
       </select>	
     </div>
     );
