@@ -1,5 +1,6 @@
 # Dependencies
 /node_modules
+/submissions
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
