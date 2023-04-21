@@ -1,21 +1,26 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
-    const { dispatch, budget } = useContext(AppContext);
-    const handleChange = () => {
-        dispatch({
-            type: 'SET_BUDGET',
-            payload: budget,
-        });
-    }
-    let newBudget = 2000;
+    const { budget, dispatch, expenses } = useContext(AppContext);
+    const changeBudget = (val)=>{
+		const totalExpenses = expenses.reduce((total, item) => {
+			return (total += item.cost);
+		}, 0);
 
+		if (val>20000) {
+            alert("You cannot set a budget larger than 20,000")
+        } else if(val<totalExpenses) {
+			alert("You cannot reduce the budget that is already allocated!");
+		} else {
+			dispatch({
+				type: 'SET_BUDGET',
+				payload: val,
+			})
+			}
+	}
     return (
         <div className='alert alert-secondary'>
-            {/* <span>Budget: £{budget}</span> */}
-            <label htmlFor="bud">£</label>
-            <input type="number" name="bud" id="bud" defaultValue="200" step={10} onChange={handleChange}/>
-            {/* this isn't working, reference how to enter allocation in AllocationForm.js line 68 */}
+            <span>Budget: £ <input type="number" name="" id="" step="10" value={budget} onChange={(event)=>changeBudget(event.target.value)}/></span>
         </div>
     );
 };
